@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Nutri-Bae</title>
+        <link rel="icon" type="image/icon" href="{{url_for('static', filename='images/Untitled design (8).png')}}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles1.css') }}" >
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename = 'styles.css') }}">
+		<link rel="stylesheet" media="screen" href ="{{url_for('static',filename = 'bootstrap.min.css') }}">
+		<link rel="stylesheet" href="static/bootstrap-theme.min.css">
+		
+	</head>
+	<body style="font-family: 'Montserrat', sans-serif;">
+		<ul class="topnav">
+			<li><a href="#home">Home</a></li>
+			<li><a href="#news">How it works</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li class="right"><img src="{{url_for('static', filename='images/Copy of Nutri bae.png' )}}" height="45px"></li>
+		  </ul>
+
+		
+		<div class="container">
+			
+			
+			{% block main %}	
+				<h1 id="Home" style="font-family: 'Montserrat', sans-serif ; font-size: 30px;margin-top: 50px;"><center>Lets get your meal plan</center></h2>
+					<h3><center>Get your custom meal plan based on your prefrences.</center></h3>
+				
+					<br>
+				<form  action="" method="post" role="form" class="my-form">
+					{{ form.hidden_tag()}}
+					<div class="form-group">
+						{{form.name.label(class="form-control-label")}}
+						
+						{%if form.name.errors%}
+							{{form.name(class="form-control form-control-md is-invalid")}}
+							<div class="invalid-feedback">
+								{%for error in form.name.errors%}
+									<span>{{error}}</span>
+								{%endfor%}
+							</div>
+						{%else%}
+							{{form.name(class="form-control form-control-md")}}
+						{%endif%}
+					</div>
+					<div class="form-group">
+						{{form.weight.label(class="form-control-label")}}
+
+						{%if form.weight.errors%}
+							{{form.weight(class="form-control form-control-md is-invalid")}}
+							<div class="invalid-feedback">
+								{%for error in form.weight.errors%}
+									<span>{{error}}</span>
+								{%endfor%}
+							</div>
+						{%else%}
+							{{form.weight(class="form-control form-control-md")}}
+						{%endif%}
+					</div>
+					<div class="form-group">
+						{{form.height.label(class="form-control-label")}}
+
+						{%if form.height.errors%}
+							{{form.height(class="form-control form-control-md is-invalid")}}
+							<div class="invalid-feedback">
+								{%for error in form.height.errors%}
+									<span>{{error}}</span>
+								{%endfor%}
+							</div>
+						{%else%}
+							{{form.height(class="form-control form-control-md")}}
+						{%endif%}
+
+					</div>
+					<div class="form-group">
+						{{form.age.label(class="form-control-label")}}
+						
+						{%if form.age.errors%}
+							{{form.age(class="form-control form-control-md is-invalid")}}
+							<div class="invalid-feedback">
+								{%for error in form.age.errors%}
+									<span>{{error}}</span>
+								{%endfor%}
+							</div>
+						{%else%}
+							{{form.age(class="form-control form-control-md")}}
+						{%endif%}
+					</div>	
+
+					{% for subfield in form.veg %}
+						<div class="form-check">
+							{{ subfield(class="form-check-input") }}
+							{{ subfield.label(class="form-check-label") }}
+						</div>	
+					{% endfor %}
+
+					{% for subfield in form.gender %}
+						<div class="form-check">
+							{{ subfield(class="form-check-input") }}
+							{{ subfield.label(class="form-check-label") }}
+						</div>	
+					{% endfor %}					
+					
+					<h4 style="margin-bottom:3px">Physical Activity</h4>
+					{% for subfield in form.physical_activity %}
+						<div class="form-check">
+							{{ subfield(class="form-check-input") }}
+							{{ subfield.label(class="form-check-label") }}
+						</div>	
+					{% endfor %}
+
+					{{form.submit(class="btn btn-success")}}				
+				</form>
+			{% endblock %}
+		</div>
+
+		<!--Information-->
+            
+		<h2 id="news" style="font-size: 40px; align-self: center;"><center>How it works!?</center></h2>
+        <div style="margin: 20px;" class="how">
+		<div class="row">
+			<div class="column" >
+				<h3 style="color: #7ECB34; text-align: center;" >BMR calculator</h3>
+				<p>The Basal Metabolic Rate is a calculation using a person's height, weight and gender. It gives information about a persons calories your body need to accomplish its most basic life sustaining functions.</p> 
+			</div>
+			<div class="column" >
+				<h3 style="color: #7ECB34; text-align: center;">Automatic Diet planner</h3>
+				<p>Automatic diet planner suggests you the diet according to your desired weight gain or loss based on calories of different dishes from our vast database which cover almost every dish.</p>
+			</div>
+			</div>
+		  
+			<div class="row">
+			<div class="column" >
+				<h3 style="color: #7ECB34; text-align: center;">Free of cost</h3>
+				<p>Our servicess are free of cost, we dont charge any fee or subsciption for our services.</p>
+			</div>
+			<div class="column" >
+				<h3 style="color:#7ECB34; text-align: center;">Cross-plateform support</h3>
+				<p>Easily accessible our services from all the platform for example mobile, laptop, desktop.</p>
+			</div>
+		  </div>
+		</div>
+
+	
+		<div class="background">
+			<div class="container">
+			  <div class="screen">
+				<div class="screen-header">
+				  <div class="screen-header-left">
+					<div class="screen-header-button close"></div>
+					<div class="screen-header-button maximize"></div>
+					<div class="screen-header-button minimize"></div>
+				  </div>
+				  <div class="screen-header-right">
+					<div class="screen-header-ellipsis"></div>
+					<div class="screen-header-ellipsis"></div>
+					<div class="screen-header-ellipsis"></div>
+				  </div>
+				</div>
+				<div class="screen-body">
+				  <div class="screen-body-item left">
+					<div id="contact" class="app-title">
+					  <span>CONTACT</span>
+					  <span>US</span>
+					</div>
+					<div class="app-contact">CONTACT INFO : 900000000 email:eshudhi@gmail.com</div>
+				  </div>
+				  <div class="screen-body-item">
+					<div class="app-form">
+					  <div class="app-form-group">
+						<input class="app-form-control" placeholder="NAME" >
+					  </div>
+					  <div class="app-form-group">
+						<input class="app-form-control" placeholder="EMAIL">
+					  </div>
+					  <div class="app-form-group">
+						<input class="app-form-control" placeholder="CONTACT NO">
+					  </div>
+					  <div class="app-form-group message">
+						<input class="app-form-control" placeholder="MESSAGE">
+					  </div>
+					  <div class="app-form-group buttons">
+						<button class="app-form-button">CANCEL</button>
+						<button onclick="location.href='mailto:eshudhi@gmail.com'" class="app-form-button">SEND</button>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  
+			</div>
+		    </div>
+		<footer>
+            <a href="#">&copy;Nutrition Before Anyone Else</a> 
+            <a href="#">Made with &#128151 </a>
+            <!-- this is footer -->
+        </footer>
+	</body>
+</html>
